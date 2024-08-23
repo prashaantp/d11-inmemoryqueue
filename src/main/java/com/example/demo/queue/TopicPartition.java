@@ -1,6 +1,6 @@
 package com.example.demo.queue;
 
-import java.util.Optional;
+import java.util.List;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.atomic.AtomicLong;
 
@@ -25,7 +25,7 @@ public class TopicPartition<T> {
         messageQueue.add(m);
     }
 
-    public Optional<QueueMessage<T>> poll(int offset) {
-        return messageQueue.stream().filter(m -> m.id() > offset).findFirst();
+    public List<QueueMessage<T>> poll(long offset, int count) {
+        return messageQueue.stream().filter(m -> m.id() > offset).limit(count).toList();
     }
 }

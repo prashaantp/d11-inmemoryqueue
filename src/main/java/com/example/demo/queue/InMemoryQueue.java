@@ -26,7 +26,7 @@ public class InMemoryQueue<T> {
         }
     }
 
-    public Subscription subscribe(String name, String group) {
+    public Subscription<T> subscribe(String name, String group) {
         Topic<T> topic = getTopic(name, defaultPartitions);
         return topic.subscribe(group);
     }
